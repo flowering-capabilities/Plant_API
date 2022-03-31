@@ -150,6 +150,9 @@ let growth_4_16;
 let growth_4_17;
 let growth_4_arr = [];
 let growth_4_index = 0;
+
+let windowW;
+let windowH;
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
   growth_1_02 = loadImage('growth1/sage_1_01.png');
@@ -299,7 +302,9 @@ function preload() {
 }  
 
 function setup() {
-  createCanvas(width, height);
+  windowW = windowWidth/2;
+  windowH = windowHeight/2;
+  createCanvas(windowWidth, windowHeight);
    frameRate(5);
    growth_1_arr = [growth_1_01, growth_1_01, growth_1_01, growth_1_02, growth_1_02, growth_1_02, growth_1_03, growth_1_03, growth_1_03, growth_1_04, growth_1_04, growth_1_04, growth_1_05, growth_1_05, growth_1_05, growth_1_06, growth_1_06, growth_1_06, growth_1_07, growth_1_07, growth_1_07, growth_1_08, growth_1_08, growth_1_08, growth_1_09, growth_1_09, growth_1_09, growth_1_10, growth_1_10, growth_1_10, growth_1_11, growth_1_11, growth_1_11, growth_1_12, growth_1_12, growth_1_12, growth_1_13,  growth_1_13, growth_1_13, growth_1_14, growth_1_14, growth_1_14, growth_1_15, growth_1_15, growth_1_15, growth_1_16, growth_1_16, growth_1_16, growth_1_17, growth_1_17, growth_1_17,growth_1_18, growth_1_18, growth_1_18,growth_1_19, growth_1_19, growth_1_19,growth_1_20, growth_1_20, growth_1_20, growth_1_01, growth_1_01, growth_1_01];
    growth_1_droopy_arr = [growth_1_droopy_01, growth_1_droopy_01, growth_1_droopy_01, growth_1_droopy_02, growth_1_droopy_02, growth_1_droopy_02, growth_1_droopy_03, growth_1_droopy_03, growth_1_droopy_03, growth_1_droopy_04, growth_1_droopy_04, growth_1_droopy_04, growth_1_droopy_05, growth_1_droopy_05, growth_1_droopy_05, growth_1_droopy_06, growth_1_droopy_06, growth_1_droopy_06, growth_1_droopy_07, growth_1_droopy_07, growth_1_droopy_07, growth_1_droopy_08, growth_1_droopy_08, growth_1_droopy_08, growth_1_droopy_09, growth_1_droopy_09, growth_1_droopy_09, growth_1_droopy_10, growth_1_droopy_10, growth_1_droopy_10, growth_1_droopy_11, growth_1_droopy_11, growth_1_droopy_11, growth_1_droopy_12, growth_1_droopy_12, growth_1_droopy_12, growth_1_droopy_13,  growth_1_droopy_13, growth_1_droopy_13, growth_1_droopy_14, growth_1_droopy_14, growth_1_droopy_14, growth_1_droopy_15, growth_1_droopy_15, growth_1_droopy_15, growth_1_droopy_16, growth_1_droopy_16, growth_1_droopy_16, growth_1_droopy_17, growth_1_droopy_17, growth_1_droopy_17,growth_1_droopy_18, growth_1_droopy_18, growth_1_droopy_18,growth_1_droopy_19, growth_1_droopy_19, growth_1_droopy_19,growth_1_droopy_20, growth_1_droopy_20, growth_1_droopy_20,growth_1_droopy_21, growth_1_droopy_21, growth_1_droopy_21, growth_1_droopy_01, growth_1_droopy_01, growth_1_droopy_01];
@@ -357,7 +362,7 @@ function growth_2(){
   }
 }
 function growth_2_droop(){
-    image(growth_2_droopy_arr[growth_2_droopy_index], 200, 200);
+    image(growth_2_droopy_arr[growth_2_droopy_index], windowW, windowH);
     if(growth_2_droopy_index < growth_2_droopy_arr.length-1){
           growth_2_droopy_index += 1;
           console.log(growth_2_droopy_index);
