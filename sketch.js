@@ -153,6 +153,9 @@ let growth_4_index = 0;
 
 let windowW;
 let windowH;
+let createDate;
+let timeData;
+let time;
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
   growth_1_02 = loadImage('growth1/sage_1_01.png');
@@ -299,6 +302,8 @@ function preload() {
   growth_4_14 = loadImage('growth4/sage_4_13.png');
   growth_4_15 = loadImage('growth4/sage_4_14.png');
   growth_4_16 = loadImage('growth4/sage_4_15.png');
+  createDate = new Date();
+  timeData = createDate.getHours();
 }  
 
 function setup() {
@@ -313,17 +318,36 @@ function setup() {
    growth_3_arr = [growth_3_02, growth_3_02, growth_3_02,growth_3_03, growth_3_03, growth_3_03,growth_3_04, growth_3_04, growth_3_04, growth_3_05, growth_3_05, growth_3_05, growth_3_06, growth_3_06, growth_3_06,growth_3_07, growth_3_07, growth_3_07, growth_3_08, growth_3_08,  growth_3_08,growth_3_09, growth_3_09,  growth_3_09,growth_3_10, growth_3_10,  growth_3_10, growth_3_11, growth_3_11, growth_3_11,growth_3_12, growth_3_12,  growth_3_12, growth_3_13, growth_3_13,  growth_3_13, growth_3_14, growth_3_14, growth_3_14, growth_3_15, growth_3_15, growth_3_15, growth_3_16,  growth_3_16,  growth_3_16, growth_3_17, growth_3_17, growth_3_17, growth_3_18, growth_3_18, growth_3_18,growth_3_19,  growth_3_19, growth_3_19,growth_3_20, growth_3_20,  growth_3_20, growth_3_21,  growth_3_21, growth_3_21];
    growth_3_droopy_arr = [growth_3_droopy_02, growth_3_droopy_02, growth_3_droopy_02,growth_3_droopy_03, growth_3_droopy_03, growth_3_droopy_03,growth_3_droopy_04, growth_3_droopy_04, growth_3_droopy_04, growth_3_droopy_05, growth_3_droopy_05, growth_3_droopy_05, growth_3_droopy_06, growth_3_droopy_06, growth_3_droopy_06,growth_3_droopy_07, growth_3_droopy_07, growth_3_droopy_07, growth_3_droopy_08, growth_3_droopy_08,  growth_3_droopy_08,growth_3_droopy_09, growth_3_droopy_09,  growth_3_droopy_09,growth_3_droopy_10, growth_3_droopy_10,  growth_3_droopy_10, growth_3_droopy_11, growth_3_droopy_11, growth_3_droopy_11,growth_3_droopy_12, growth_3_droopy_12,  growth_3_droopy_12, growth_3_droopy_13, growth_3_droopy_13,  growth_3_droopy_13, growth_3_droopy_14, growth_3_droopy_14, growth_3_droopy_14, growth_3_droopy_15, growth_3_droopy_15, growth_3_droopy_15, growth_3_droopy_16,  growth_3_droopy_16,  growth_3_droopy_16, growth_3_droopy_17, growth_3_droopy_17, growth_3_droopy_17, growth_3_droopy_18, growth_3_droopy_18, growth_3_droopy_18,growth_3_droopy_19,  growth_3_droopy_19, growth_3_droopy_19,growth_3_droopy_20, growth_3_droopy_20,  growth_3_droopy_20, growth_3_droopy_21,  growth_3_droopy_21, growth_3_droopy_21, growth_3_droopy_22,  growth_3_droopy_22, growth_3_droopy_22];
    growth_4_arr = [growth_4_01, growth_4_01, growth_4_01, growth_4_02, growth_4_02, growth_4_02, growth_4_03, growth_4_03, growth_4_03, growth_4_04, growth_4_04, growth_4_04, growth_4_05, growth_4_05, growth_4_05, growth_4_06, growth_4_06, growth_4_06, growth_4_07, growth_4_07, growth_4_07, growth_4_08, growth_4_08, growth_4_08, growth_4_09, growth_4_09, growth_4_09, growth_4_10, growth_4_10, growth_4_10, growth_4_11, growth_4_11, growth_4_11, growth_4_12, growth_4_12, growth_4_12, growth_4_13,  growth_4_13, growth_4_13, growth_4_14, growth_4_14, growth_4_14, growth_4_15, growth_4_15, growth_4_15, growth_4_01, growth_4_01, growth_4_01];
+   
+
 }
 
 function draw() {
-     clear();
+    clear();
+    if(time == true){
+        background('#B0E0E6');
+    }else{
+        background('#222222');
+    }
     /* growth_1();
      growth_2();
      growth_3();
      growth_4();*/
      growth_3_droop();
      //console.log(mouseX);
+     console.log(timeData);
         
+  }
+
+  function getTime(timeData){
+        if(timeData > 0 && timeData <= 5){
+              time = false;
+              return time;
+        }else{
+              time = true;
+              return time;
+        }
+      
   }
   function growth_1(){
     image(growth_1_arr[growth_1_index], 130, 180);
@@ -365,7 +389,6 @@ function growth_2_droop(){
     image(growth_2_droopy_arr[growth_2_droopy_index], windowW, windowH);
     if(growth_2_droopy_index < growth_2_droopy_arr.length-1){
           growth_2_droopy_index += 1;
-          console.log(growth_2_droopy_index);
     }else if (growth_2_droopy_index == growth_2_droopy_arr.length-1){
         for(let i=0; i < growth_2_droopy_arr.length-1; i++){
             if (growth_2_droopy_index >= 0){ 
@@ -378,12 +401,10 @@ function growth_3(){
   image(growth_3_arr[growth_3_index], 300, 300);
   if(growth_3_index < growth_3_arr.length-1){
         growth_3_index += 1;
-        console.log(growth_3_index);
   }else if (growth_3_index == growth_3_arr.length-1){
       for(let i=0; i < growth_3_arr.length-1; i++){
           if (growth_3_index >= 0){ 
               growth_3_index -= 1;
-              console.log(growth_3_index);
           }
       }     
   }
@@ -393,7 +414,6 @@ function growth_3_droop(){
     image(growth_3_droopy_arr[growth_3_droopy_index], 300, 300);
     if(growth_3_droopy_index < growth_3_droopy_arr.length-1){
           growth_3_droopy_index += 1;
-          console.log(growth_3_droopy_index);
     }else if (growth_3_droopy_index == growth_3_droopy_arr.length-1){
         for(let i=0; i < growth_3_droopy_arr.length-1; i++){
             if (growth_3_droopy_index >= 0){ 
@@ -410,7 +430,6 @@ function growth_3_droop(){
             for(let i=0; i < growth_4_arr.length-1; i++){
                 if (growth_4_index >= 0){ 
                     growth_4_index -= 1;
-                    console.log(growth_4_index);
                 }
             }     
         }
