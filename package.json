@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "name": "plant_api_project",
+  "version": "1.0.0",
+  "description": "plant project ",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flowering-capabilities/Plant_API.git"
+  },
+  "keywords": [
+    "plants",
+    "weatherapi",
+    "geolocation",
+    "api"
+  ],
+  "author": "morgan button",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowering-capabilities/Plant_API/issues"
+  },
+  "homepage": "https://github.com/flowering-capabilities/Plant_API#readme"
+}
