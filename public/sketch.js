@@ -156,7 +156,8 @@ let windowH;
 let createDate;
 let timeData;
 let time;
-
+let lat;
+let lon;
 let testBrowser;
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
@@ -366,12 +367,21 @@ function draw() {
       }
   }
 
-  function geoLocation(testBrowser){
+   function geoLocation(testBrowser){
         if(testBrowser == true) {
             console.log("geolocation is available " +  testBrowser);
-            navigator.geolocation.getCurrentPosition(position =>{
-                console.log("latitude: " + position.coords.latitude);
-                console.log("longitude: " +  position.coords.longitude);
+            navigator.geolocation.getCurrentPosition(async position =>{
+                console.log("latitude: " + position.coords.latitude.toFixed(2));
+                lat = position.coords.latitude.toFixed(2);
+                console.log("longitude: " +  position.coords.longitude.toFixed(2));
+                lon = position.coords.longitude.toFixed(2);
+
+
+               const api_url = `weather/${lat}/${lon}`;
+               
+               const response = await fetch(api_url);
+               const json = await response.json();
+               console.log(json);
         });
         }else{
             console.log("geolocation IS NOT available " + testBrowser);
