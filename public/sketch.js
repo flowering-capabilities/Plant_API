@@ -159,6 +159,13 @@ let time;
 let lat;
 let lon;
 let testBrowser;
+let currentTemp;
+let hot = 90;
+let cold = 15;
+let tempBool;
+//water bool == true if too much
+//true water bool trumps temp bool 
+let waterBool;
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
   growth_1_02 = loadImage('growth1/sage_1_01.png');
@@ -305,8 +312,8 @@ function preload() {
   growth_4_14 = loadImage('growth4/sage_4_13.png');
   growth_4_15 = loadImage('growth4/sage_4_14.png');
   growth_4_16 = loadImage('growth4/sage_4_15.png');
-  createDate = new Date();
-  timeData = createDate.getHours();
+  
+  
 }  
 
 function setup() {
@@ -324,13 +331,18 @@ function setup() {
 }
 geoLocationTest();
 geoLocation(testBrowser);
+createDate = new Date();
+timeData = createDate.getHours();
+console.log(timeData);
 getTime(timeData);
 function draw() {
     clear();
    
     if(time == true){
+        //day
         background('#B0E0E6');
     }else{
+        //night
         background('#222222');
     }
     /* growth_1();
@@ -347,13 +359,86 @@ function draw() {
 
 
   function getTime(timeData){
-       if(timeData > 0 && timeData <= 5){
-            time = false;
-            return time;
-        }else{
-            time = true;
-            return time;
-        } 
+       switch (timeData){
+           case 0:
+              time = false;
+              return time;
+           case 1:
+              time = false;
+              return time;
+           case 2:
+              time = false;
+              return time;           
+           case 3:
+              time = false;
+              return time;
+           case 4:
+              time = false;
+              return time;
+           case 5:
+              time = false;
+              return time;
+           case 6:
+              time = true;
+              return time;
+           case 7:
+              time = true;
+              return time;
+           case 8:
+              time = true;
+              return time;
+           case 9:
+              time = true;
+              return time;
+           case 10:
+              time = true;
+              return time;
+           case 11:
+              time = true;
+              return time;
+           case 12:
+              time = true;
+              return time;
+           case 13:
+              time = true;
+              return time;
+           case 14:
+              time = true;
+              return time;
+           case 15:
+              time = true;
+              return time;
+           case 16:
+              time = true;
+              return time;
+           case 17:
+              time = true;
+              return time;
+           case 18:
+              time = true;
+              return time;
+           case 19:
+              time = false;
+              return time;
+           case 20:
+              time = false;
+              return time;
+           case 21:
+              time = false;
+              return time;
+           case 22:
+              time = false;
+              return time;
+           case 23:
+              time = false;
+              return time;
+           default:
+               console.log("get hours error");
+            
+
+       }
+
+
   }
 
   function geoLocationTest(){
@@ -381,11 +466,32 @@ function draw() {
                
                const response = await fetch(api_url);
                const json = await response.json();
-               console.log(json);
+               currentTemp = json.current.temp;
+               weatherPlants(currentTemp);
         });
         }else{
             console.log("geolocation IS NOT available " + testBrowser);
       }
+  }
+
+
+  function weatherPlants(current){
+      //too hot (more than 90)
+     
+      //too cold (less than 15)
+
+      //perfect else
+
+      //need healthy or wilty bool for other functions 
+      //water bool && functions --> add later**********
+      if(current >= hot){
+            tempBool = true;
+      }else if(current < cold){
+            tempBool = true;
+      }else{
+            tempBool = false;
+      }
+
   }
 
   function waterGauge(){
