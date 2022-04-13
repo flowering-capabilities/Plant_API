@@ -10,7 +10,7 @@ app.get('/weather/:lat/:lon', async (request,response) => {
     console.log(lat);
     const lon = request.params.lon;
     console.log(lon);
-    const api_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=eccb57ed88c64ba097cb36f1798a81f8`;
+    const api_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=eccb57ed88c64ba097cb36f1798a81f8`;
     
     const fetch_response = await fetch(api_url);
     const json = await fetch_response.json();
