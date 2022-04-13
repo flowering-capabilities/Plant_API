@@ -345,14 +345,19 @@ function draw() {
         //night
         background('#222222');
     }
-    /* growth_1();
-     growth_2();
-     growth_3();
-     growth_4();*/
-     growth_1_droop();
-     growth_2_droop();
-     growth_3_droop();
-     //console.log(mouseX);
+    if(tempBool == false){
+        growth_1();
+        growth_2();
+        growth_3();
+        growth_4();
+    }else{
+        growth_1_droop();
+        growth_2_droop();
+        growth_3_droop();
+    }
+
+
+
     // waterGauge();
 }
 
@@ -434,11 +439,7 @@ function draw() {
               return time;
            default:
                console.log("get hours error");
-            
-
        }
-
-
   }
 
   function geoLocationTest(){
@@ -467,7 +468,7 @@ function draw() {
                const response = await fetch(api_url);
                const json = await response.json();
                currentTemp = json.current.temp;
-               weatherPlants(currentTemp);
+               weatherPlants(65);
         });
         }else{
             console.log("geolocation IS NOT available " + testBrowser);
@@ -476,19 +477,16 @@ function draw() {
 
 
   function weatherPlants(current){
-      //too hot (more than 90)
-     
-      //too cold (less than 15)
-
-      //perfect else
-
       //need healthy or wilty bool for other functions 
       //water bool && functions --> add later**********
       if(current >= hot){
+            //too hot (more than 90)
             tempBool = true;
       }else if(current < cold){
+            //too cold (less than 15)
             tempBool = true;
       }else{
+            //perfect
             tempBool = false;
       }
 
