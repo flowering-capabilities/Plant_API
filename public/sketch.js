@@ -151,6 +151,8 @@ let growth_4_17;
 let growth_4_arr = [];
 let growth_4_index = 0;
 
+
+
 let windowW;
 let windowH;
 let createDate;
@@ -166,6 +168,14 @@ let tempBool;
 //water bool == true if too much
 //true water bool trumps temp bool 
 let waterBool;
+
+let waterGauge1;
+let waterGauge2;
+let waterGauge3;
+let waterGauge4;
+let waterGaugeArr;
+let gaugeIndex = 0;
+
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
   growth_1_02 = loadImage('growth1/sage_1_01.png');
@@ -312,6 +322,11 @@ function preload() {
   growth_4_14 = loadImage('growth4/sage_4_13.png');
   growth_4_15 = loadImage('growth4/sage_4_14.png');
   growth_4_16 = loadImage('growth4/sage_4_15.png');
+
+  waterGauge1 = loadImage('waterGauge/1.png');
+  waterGauge2 = loadImage('waterGauge/2.png');;
+  waterGauge3 = loadImage('waterGauge/3.png');;
+  waterGauge4 = loadImage('waterGauge/4.png');;
   
   
 }  
@@ -328,12 +343,15 @@ function setup() {
    growth_3_arr = [growth_3_02, growth_3_02, growth_3_02,growth_3_03, growth_3_03, growth_3_03,growth_3_04, growth_3_04, growth_3_04, growth_3_05, growth_3_05, growth_3_05, growth_3_06, growth_3_06, growth_3_06,growth_3_07, growth_3_07, growth_3_07, growth_3_08, growth_3_08,  growth_3_08,growth_3_09, growth_3_09,  growth_3_09,growth_3_10, growth_3_10,  growth_3_10, growth_3_11, growth_3_11, growth_3_11,growth_3_12, growth_3_12,  growth_3_12, growth_3_13, growth_3_13,  growth_3_13, growth_3_14, growth_3_14, growth_3_14, growth_3_15, growth_3_15, growth_3_15, growth_3_16,  growth_3_16,  growth_3_16, growth_3_17, growth_3_17, growth_3_17, growth_3_18, growth_3_18, growth_3_18,growth_3_19,  growth_3_19, growth_3_19,growth_3_20, growth_3_20,  growth_3_20, growth_3_21,  growth_3_21, growth_3_21];
    growth_3_droopy_arr = [growth_3_droopy_02, growth_3_droopy_02, growth_3_droopy_02,growth_3_droopy_03, growth_3_droopy_03, growth_3_droopy_03,growth_3_droopy_04, growth_3_droopy_04, growth_3_droopy_04, growth_3_droopy_05, growth_3_droopy_05, growth_3_droopy_05, growth_3_droopy_06, growth_3_droopy_06, growth_3_droopy_06,growth_3_droopy_07, growth_3_droopy_07, growth_3_droopy_07, growth_3_droopy_08, growth_3_droopy_08,  growth_3_droopy_08,growth_3_droopy_09, growth_3_droopy_09,  growth_3_droopy_09,growth_3_droopy_10, growth_3_droopy_10,  growth_3_droopy_10, growth_3_droopy_11, growth_3_droopy_11, growth_3_droopy_11,growth_3_droopy_12, growth_3_droopy_12,  growth_3_droopy_12, growth_3_droopy_13, growth_3_droopy_13,  growth_3_droopy_13, growth_3_droopy_14, growth_3_droopy_14, growth_3_droopy_14, growth_3_droopy_15, growth_3_droopy_15, growth_3_droopy_15, growth_3_droopy_16,  growth_3_droopy_16,  growth_3_droopy_16, growth_3_droopy_17, growth_3_droopy_17, growth_3_droopy_17, growth_3_droopy_18, growth_3_droopy_18, growth_3_droopy_18,growth_3_droopy_19,  growth_3_droopy_19, growth_3_droopy_19,growth_3_droopy_20, growth_3_droopy_20,  growth_3_droopy_20, growth_3_droopy_21,  growth_3_droopy_21, growth_3_droopy_21, growth_3_droopy_22,  growth_3_droopy_22, growth_3_droopy_22];
    growth_4_arr = [growth_4_01, growth_4_01, growth_4_01, growth_4_02, growth_4_02, growth_4_02, growth_4_03, growth_4_03, growth_4_03, growth_4_04, growth_4_04, growth_4_04, growth_4_05, growth_4_05, growth_4_05, growth_4_06, growth_4_06, growth_4_06, growth_4_07, growth_4_07, growth_4_07, growth_4_08, growth_4_08, growth_4_08, growth_4_09, growth_4_09, growth_4_09, growth_4_10, growth_4_10, growth_4_10, growth_4_11, growth_4_11, growth_4_11, growth_4_12, growth_4_12, growth_4_12, growth_4_13,  growth_4_13, growth_4_13, growth_4_14, growth_4_14, growth_4_14, growth_4_15, growth_4_15, growth_4_15, growth_4_01, growth_4_01, growth_4_01];
+   
+   waterGaugeArr = [waterGauge1, waterGauge2, waterGauge3, waterGauge4];
 }
 geoLocationTest();
 geoLocation(testBrowser);
 createDate = new Date();
 timeData = createDate.getHours();
-console.log(timeData);
+console.log(timeData + "hours");
+
 getTime(timeData);
 function draw() {
     clear();
@@ -345,23 +363,33 @@ function draw() {
         //night
         background('#222222');
     }
+    //send to function omit all the if else in draw -->notes below
+    //healthy
     if(tempBool == false){
         growth_1();
-        growth_2();
-        growth_3();
-        growth_4();
+        //growth_2();
+        //growth_3();
+        //growth_4();
+        //droopy
+     
     }else{
         growth_1_droop();
-        growth_2_droop();
-        growth_3_droop();
+        //growth_2_droop();
+        //growth_3_droop();
     }
+    image(waterGaugeArr[3], 490, 180);
 
 
-
-    // waterGauge();
+    // waterGauge(); --> draws water gauge reliant on db fill count if over water in one  week water decrease by 1 until normal cannot be below 0
 }
 
-
+  //function(watergaugeBool, daycounter, tempBool)
+  //2 ifs then add bools
+  //user can cheat unfortunately by adding all water in one day but hafta fix later
+  //daycounter is primary key or date, datecounter should never increment in the same day so prolly daycounter...
+  //if daycounter <=5  --> plant is healthy even if water gauge is at 0 or full add nested if inside for  water gauge is over 3--> else healthy
+  //else if daycounter >5 && <= 7 -->  if water gauge is less than 3 or greater than three it will be wilty else healthy 
+  //else() (>7) --> reset db daycounter starts at 1 water gauge starts at 0 
 
   function getTime(timeData){
        switch (timeData){
@@ -457,18 +485,18 @@ function draw() {
         if(testBrowser == true) {
             console.log("geolocation is available " +  testBrowser);
             navigator.geolocation.getCurrentPosition(async position =>{
-                console.log("latitude: " + position.coords.latitude.toFixed(2));
-                lat = position.coords.latitude.toFixed(2);
-                console.log("longitude: " +  position.coords.longitude.toFixed(2));
-                lon = position.coords.longitude.toFixed(2);
-
-
-               const api_url = `weather/${lat}/${lon}`;
-               
-               const response = await fetch(api_url);
-               const json = await response.json();
-               currentTemp = json.current.temp;
-               weatherPlants(65);
+            console.log("latitude: " + position.coords.latitude.toFixed(2));
+            lat = position.coords.latitude.toFixed(2);
+            console.log("longitude: " +  position.coords.longitude.toFixed(2));
+            lon = position.coords.longitude.toFixed(2);
+            const api_url = `weather/${lat}/${lon}`;   
+            const response = await fetch(api_url);
+            const json = await response.json();
+            currentTemp = json.current.temp;
+            weatherPlants(currentTemp);
+            console.log(json);
+            //icon
+            console.log(console.log(json.current.weather[0].icon));
         });
         }else{
             console.log("geolocation IS NOT available " + testBrowser);
@@ -493,9 +521,7 @@ function draw() {
   }
 
   function waterGauge(){
-      let c = color('#1cb2f5');
-      fill(c);
-      rect(600, 30, 100, 300, 10);
+ 
   }
 
   function growth_1(){
