@@ -495,14 +495,20 @@ function draw() {
             currentTemp = json.current.temp;
             weatherPlants(currentTemp);
             console.log(json);
-            //icon
+            document.getElementById('temp').textContent = currentTemp;
+            let iconCode = json.current.weather[0].icon;
             console.log(console.log(json.current.weather[0].icon));
+            displayIcon( iconCode);
+            
         });
         }else{
             console.log("geolocation IS NOT available " + testBrowser);
       }
   }
-
+  function displayIcon(iconCode){
+    // iconImg = loadImage(`http://openweathermap.org/img/w/${iconCode}.png`);
+     document.getElementById('icon').src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  }
 
   function weatherPlants(current){
       //need healthy or wilty bool for other functions 

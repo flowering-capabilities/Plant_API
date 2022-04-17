@@ -8,3 +8,4 @@ html, body {
 canvas {
   display: block;
 }
+img#icon {width:10%;height:10%;}
