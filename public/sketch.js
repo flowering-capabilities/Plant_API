@@ -157,6 +157,8 @@ let windowW;
 let windowH;
 let createDate;
 let timeData;
+
+let minuteTime;
 let time;
 let lat;
 let lon;
@@ -165,6 +167,8 @@ let currentTemp;
 let hot = 90;
 let cold = 15;
 let tempBool;
+let standardHours;
+let meridiem;
 //water bool == true if too much
 //true water bool trumps temp bool 
 let waterBool;
@@ -175,6 +179,7 @@ let waterGauge3;
 let waterGauge4;
 let waterGaugeArr;
 let gaugeIndex = 0;
+
 
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
@@ -354,7 +359,15 @@ createDate = new Date();
 timeData = createDate.getHours();
 console.log(timeData + "hours");
 
+
+
+
+minuteTime = createDate.getMinutes();
+console.log(minuteTime);
 getTime(timeData);
+standardHours = calcHours(timeData);
+meridiem = ampm(timeData);
+displayTime(standardHours, minuteTime, meridiem );
 function draw() {
     clear();
    
@@ -392,7 +405,172 @@ function draw() {
   //if daycounter <=5  --> plant is healthy even if water gauge is at 0 or full add nested if inside for  water gauge is over 3--> else healthy
   //else if daycounter >5 && <= 7 -->  if water gauge is less than 3 or greater than three it will be wilty else healthy 
   //else() (>7) --> reset db daycounter starts at 1 water gauge starts at 0 
+ 
+  function ampm(hours){
+    switch (hours){
+        case 0:
+            meridiem  = "am";
+           return meridiem ;
+        case 1:
+           meridiem  = "am";
+           return meridiem ;
+        case 2:
+           meridiem  = "am";
+           return meridiem ;           
+        case 3:
+           meridiem  = "am";
+           return meridiem ;
+        case 4:
+           meridiem  = "am";
+           return meridiem ;
+        case 5:
+           meridiem  = "am";
+           return meridiem ;
+        case 6:
+           meridiem  = "am";
+           return meridiem ;
+        case 7:
+           meridiem  = "am";
+           return meridiem ;
+        case 8:
+           meridiem  = "am";
+           return meridiem ;
+        case 9:
+           meridiem  = "am";
+           return meridiem ;
+        case 10:
+           meridiem  = "am";
+           return meridiem ;
+        case 11:
+           meridiem  = "am";
+           return meridiem ;
+        case 12:
+           meridiem  = "pm";
+           return meridiem ;
+        case 13:
+           meridiem  = "pm";
+           return meridiem ;
+        case 14:
+           meridiem  = "pm";
+           return meridiem ;
+        case 15:
+           meridiem  = "pm";
+           return meridiem ;
+        case 16:
+           meridiem  = "pm";
+           return meridiem ;
+        case 17:
+           meridiem  = "pm";
+           return meridiem ;
+        case 18:
+           meridiem  = "pm";
+           return meridiem ;
+        case 19:
+           meridiem  = "pm";
+           return meridiem ;
+        case 20:
+           meridiem  = "pm";
+           return meridiem ;
+        case 21:
+           meridiem  = "pm";
+           return meridiem ;
+        case 22:
+           meridiem  = "pm";
+           return meridiem ;
+        case 23:
+           meridiem  = "pm";
+           return meridiem ;
+        default:
+            console.log("get standard meridiem  error");
+    }
+ }
+function calcHours(sthours){
+    switch (sthours){
+        case 0:
+           sthours = 12;
+           return sthours;
+        case 1:
+           sthours = 1;
+           return sthours;
+        case 2:
+           sthours = 2;
+           return sthours;           
+        case 3:
+           sthours = 3;
+           return sthours;
+        case 4:
+           sthours = 4;
+           return sthours;
+        case 5:
+           sthours = 5;
+           return sthours;
+        case 6:
+           sthours = 6;
+           return sthours;
+        case 7:
+           sthours = 7;
+           return sthours;
+        case 8:
+           sthours = 8;
+           return sthours;
+        case 9:
+           sthours = 9;
+           return sthours;
+        case 10:
+           sthours = 10;
+           return sthours;
+        case 11:
+           sthours = 11;
+           return sthours;
+        case 12:
+           sthours = 12;
+           return sthours;
+        case 13:
+           sthours = 1;
+           return sthours;
+        case 14:
+           sthours = 2;
+           return sthours;
+        case 15:
+           sthours = 3;
+           return sthours;
+        case 16:
+           sthours = 4;
+           return sthours;
+        case 17:
+           sthours = 5;
+           return sthours;
+        case 18:
+           sthours = 6;
+           return sthours;
+        case 19:
+           sthours = 7;
+           return sthours;
+        case 20:
+           sthours = 8;
+           return sthours;
+        case 21:
+           sthours = 9;
+           return sthours;
+        case 22:
+           sthours = 10;
+           return sthours;
+        case 23:
+           sthours = 11;
+           return sthours;
+        default:
+            console.log("get standard standard hours error");
+    }
+ }
+function displayTime(standardHours, minutes, meridiem ){
+    if(minutes <= 9){
+        document.getElementById('time').textContent = `${standardHours}:0${minutes} ${meridiem}`;
+    }else{
+        document.getElementById('time').textContent = `${standardHours}:${minutes} ${meridiem}`;
+    }
+    
 
+ }
   function getTime(timeData){
        switch (timeData){
            case 0:
