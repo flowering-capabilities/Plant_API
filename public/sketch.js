@@ -504,11 +504,19 @@ function draw() {
             console.log(console.log(json.current.weather[0].icon));
             displayIcon( iconCode);
             displayDescription(info);
+            displayLatLon(lat, lon);
             
         });
         }else{
             console.log("geolocation IS NOT available " + testBrowser);
       }
+  }
+
+  function displayLatLon(posLat, posLong){
+    document.getElementById('lat').textContent = posLat;
+    document.getElementById('lon').textContent = posLong;
+
+
   }
   function displayIcon(iconCode){
     // iconImg = loadImage(`http://openweathermap.org/img/w/${iconCode}.png`);
