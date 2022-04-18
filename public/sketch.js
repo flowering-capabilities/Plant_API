@@ -334,7 +334,9 @@ function preload() {
 function setup() {
   windowW = windowWidth/2;
   windowH = windowHeight/2;
-   createCanvas(800, 800);
+
+   let canvas = createCanvas(windowW, windowH);
+   canvas.parent('sketch-container');
    frameRate(5);
    growth_1_arr = [growth_1_01, growth_1_01, growth_1_01, growth_1_02, growth_1_02, growth_1_02, growth_1_03, growth_1_03, growth_1_03, growth_1_04, growth_1_04, growth_1_04, growth_1_05, growth_1_05, growth_1_05, growth_1_06, growth_1_06, growth_1_06, growth_1_07, growth_1_07, growth_1_07, growth_1_08, growth_1_08, growth_1_08, growth_1_09, growth_1_09, growth_1_09, growth_1_10, growth_1_10, growth_1_10, growth_1_11, growth_1_11, growth_1_11, growth_1_12, growth_1_12, growth_1_12, growth_1_13,  growth_1_13, growth_1_13, growth_1_14, growth_1_14, growth_1_14, growth_1_15, growth_1_15, growth_1_15, growth_1_16, growth_1_16, growth_1_16, growth_1_17, growth_1_17, growth_1_17,growth_1_18, growth_1_18, growth_1_18,growth_1_19, growth_1_19, growth_1_19,growth_1_20, growth_1_20, growth_1_20, growth_1_01, growth_1_01, growth_1_01];
    growth_1_droopy_arr = [growth_1_droopy_01, growth_1_droopy_01, growth_1_droopy_01, growth_1_droopy_02, growth_1_droopy_02, growth_1_droopy_02, growth_1_droopy_03, growth_1_droopy_03, growth_1_droopy_03, growth_1_droopy_04, growth_1_droopy_04, growth_1_droopy_04, growth_1_droopy_05, growth_1_droopy_05, growth_1_droopy_05, growth_1_droopy_06, growth_1_droopy_06, growth_1_droopy_06, growth_1_droopy_07, growth_1_droopy_07, growth_1_droopy_07, growth_1_droopy_08, growth_1_droopy_08, growth_1_droopy_08, growth_1_droopy_09, growth_1_droopy_09, growth_1_droopy_09, growth_1_droopy_10, growth_1_droopy_10, growth_1_droopy_10, growth_1_droopy_11, growth_1_droopy_11, growth_1_droopy_11, growth_1_droopy_12, growth_1_droopy_12, growth_1_droopy_12, growth_1_droopy_13,  growth_1_droopy_13, growth_1_droopy_13, growth_1_droopy_14, growth_1_droopy_14, growth_1_droopy_14, growth_1_droopy_15, growth_1_droopy_15, growth_1_droopy_15, growth_1_droopy_16, growth_1_droopy_16, growth_1_droopy_16, growth_1_droopy_17, growth_1_droopy_17, growth_1_droopy_17,growth_1_droopy_18, growth_1_droopy_18, growth_1_droopy_18,growth_1_droopy_19, growth_1_droopy_19, growth_1_droopy_19,growth_1_droopy_20, growth_1_droopy_20, growth_1_droopy_20,growth_1_droopy_21, growth_1_droopy_21, growth_1_droopy_21, growth_1_droopy_01, growth_1_droopy_01, growth_1_droopy_01];
@@ -451,7 +453,7 @@ function draw() {
               time = true;
               return time;
            case 19:
-              time = false;
+              time = true;
               return time;
            case 20:
               time = false;
@@ -493,12 +495,15 @@ function draw() {
             const response = await fetch(api_url);
             const json = await response.json();
             currentTemp = json.current.temp;
+            
             weatherPlants(currentTemp);
             console.log(json);
             document.getElementById('temp').textContent = currentTemp;
+            let info = json.current.weather[0].description;
             let iconCode = json.current.weather[0].icon;
             console.log(console.log(json.current.weather[0].icon));
             displayIcon( iconCode);
+            displayDescription(info);
             
         });
         }else{
@@ -508,6 +513,9 @@ function draw() {
   function displayIcon(iconCode){
     // iconImg = loadImage(`http://openweathermap.org/img/w/${iconCode}.png`);
      document.getElementById('icon').src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  }
+  function displayDescription(info){
+    document.getElementById('description').textContent = info;
   }
 
   function weatherPlants(current){
