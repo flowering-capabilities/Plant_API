@@ -180,6 +180,8 @@ let waterGauge4;
 let waterGaugeArr;
 let gaugeIndex = 0;
 
+let ground;
+let stars;
 
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
@@ -329,10 +331,12 @@ function preload() {
   growth_4_16 = loadImage('growth4/sage_4_15.png');
 
   waterGauge1 = loadImage('waterGauge/1.png');
-  waterGauge2 = loadImage('waterGauge/2.png');;
-  waterGauge3 = loadImage('waterGauge/3.png');;
-  waterGauge4 = loadImage('waterGauge/4.png');;
-  
+  waterGauge2 = loadImage('waterGauge/2.png');
+  waterGauge3 = loadImage('waterGauge/3.png');
+  waterGauge4 = loadImage('waterGauge/4.png');
+
+  ground = loadImage('background/test.png');
+  stars = loadImage('background/stars.png');
   
 }  
 
@@ -340,7 +344,7 @@ function setup() {
   windowW = windowWidth/2;
   windowH = windowHeight/2;
 
-   let canvas = createCanvas(windowW, windowH);
+   let canvas = createCanvas(350,450);
    canvas.parent('sketch-container');
    frameRate(5);
    growth_1_arr = [growth_1_01, growth_1_01, growth_1_01, growth_1_02, growth_1_02, growth_1_02, growth_1_03, growth_1_03, growth_1_03, growth_1_04, growth_1_04, growth_1_04, growth_1_05, growth_1_05, growth_1_05, growth_1_06, growth_1_06, growth_1_06, growth_1_07, growth_1_07, growth_1_07, growth_1_08, growth_1_08, growth_1_08, growth_1_09, growth_1_09, growth_1_09, growth_1_10, growth_1_10, growth_1_10, growth_1_11, growth_1_11, growth_1_11, growth_1_12, growth_1_12, growth_1_12, growth_1_13,  growth_1_13, growth_1_13, growth_1_14, growth_1_14, growth_1_14, growth_1_15, growth_1_15, growth_1_15, growth_1_16, growth_1_16, growth_1_16, growth_1_17, growth_1_17, growth_1_17,growth_1_18, growth_1_18, growth_1_18,growth_1_19, growth_1_19, growth_1_19,growth_1_20, growth_1_20, growth_1_20, growth_1_01, growth_1_01, growth_1_01];
@@ -370,30 +374,35 @@ meridiem = ampm(timeData);
 displayTime(standardHours, minuteTime, meridiem );
 function draw() {
     clear();
+    
    
     if(time == true){
         //day
         background('#B0E0E6');
     }else{
         //night
-        background('#222222');
+        //background('#010203');
+        background(stars);
     }
     //send to function omit all the if else in draw -->notes below
     //healthy
+    image(ground, 0, 350);
+
     if(tempBool == false){
+        //growth_1();
+       // growth_2();
+       //growth_3();
         growth_1();
-        //growth_2();
-        //growth_3();
-        //growth_4();
         //droopy
+       // growth_4_droop();
      
     }else{
         growth_1_droop();
         //growth_2_droop();
         //growth_3_droop();
     }
-    image(waterGaugeArr[3], 490, 180);
-
+    image(waterGaugeArr[3], 50, 180);
+   
 
     // waterGauge(); --> draws water gauge reliant on db fill count if over water in one  week water decrease by 1 until normal cannot be below 0
 }
@@ -725,7 +734,7 @@ function displayTime(standardHours, minutes, meridiem ){
   }
 
   function growth_1(){
-    image(growth_1_arr[growth_1_index], 130, 180);
+    image(growth_1_arr[growth_1_index], 110, 325);
     if(growth_1_index < growth_1_arr.length-1){
           growth_1_index += 1;
     }else if (growth_1_index == growth_1_arr.length-1){
@@ -738,7 +747,7 @@ function displayTime(standardHours, minutes, meridiem ){
 }
 
 function growth_1_droop(){
-    image(growth_1_droopy_arr[growth_1_droopy_index], 130, 180);
+    image(growth_1_droopy_arr[growth_1_droopy_index], 110, 325);
     if(growth_1_droopy_index < growth_1_droopy_arr.length-1){
           growth_1_droopy_index += 1;
     }else if (growth_1_droopy_index == growth_1_droopy_arr.length-1){
@@ -751,7 +760,7 @@ function growth_1_droop(){
 }
 
 function growth_2(){
-  image(growth_2_arr[growth_2_index], 200, 200);
+  image(growth_2_arr[growth_2_index], 80, 255);
   if(growth_2_index < growth_2_arr.length-1){
         growth_2_index += 1;
   }else if (growth_2_index == growth_2_arr.length-1){
@@ -764,7 +773,7 @@ function growth_2(){
 }
 
 function growth_2_droop(){
-    image(growth_2_droopy_arr[growth_2_droopy_index], 200, 200);
+    image(growth_2_droopy_arr[growth_2_droopy_index], 80, 255);
     if(growth_2_droopy_index < growth_2_droopy_arr.length-1){
           growth_2_droopy_index += 1;
     }else if (growth_2_droopy_index == growth_2_droopy_arr.length-1){
@@ -777,7 +786,7 @@ function growth_2_droop(){
   }
 
 function growth_3(){
-  image(growth_3_arr[growth_3_index], 300, 300);
+  image(growth_3_arr[growth_3_index], 100, 200);
   if(growth_3_index < growth_3_arr.length-1){
         growth_3_index += 1;
   }else if (growth_3_index == growth_3_arr.length-1){
@@ -790,7 +799,7 @@ function growth_3(){
 }
 
 function growth_3_droop(){
-    image(growth_3_droopy_arr[growth_3_droopy_index], 300, 300);
+    image(growth_3_droopy_arr[growth_3_droopy_index], 100, 200);
     if(growth_3_droopy_index < growth_3_droopy_arr.length-1){
           growth_3_droopy_index += 1;
     }else if (growth_3_droopy_index == growth_3_droopy_arr.length-1){
@@ -803,7 +812,7 @@ function growth_3_droop(){
   }
   
   function growth_4(){
-    image(growth_4_arr[growth_4_index], 400, 400);
+    image(growth_4_arr[growth_4_index], 80, 125);
         if(growth_4_index < growth_4_arr.length-1){
               growth_4_index += 1;
         }else if (growth_4_index == growth_4_arr.length-1){
@@ -814,6 +823,19 @@ function growth_3_droop(){
             }     
         }
   }
+
+  function growth_4_droop(){
+   image(growth_4_droopy_arr[growth_4_droopy_index], 80, 125);
+   if(growth_4_droopy_index < growth_4_droopy_arr.length-1){
+         growth_4_droopy_index += 1;
+   }else if (growth_4_droopy_index == growth_4_droopy_arr.length-1){
+       for(let i=0; i < growth_4_droopy_arr.length-1; i++){
+           if (growth_4_droopy_index >= 0){ 
+               growth_4_droopy_index -= 1;
+           }
+       }     
+   }
+ }
  
 
   

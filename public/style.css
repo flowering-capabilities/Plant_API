@@ -1,5 +1,6 @@
 
-canvas {
-  display: block;
-}
-img#icon {width:10%;height:10%;}
+canvas {display: block;}
+#sketch-container {display:flex;justify-content:center;}
+.iconTxt p {display:inline-block;font-family: 'Square Peg', cursive;font-size: 30px;}
+.iconTxt .iconContainer {display:flex;justify-content:center;align-items:center;}
+.iconTxt p:nth-child(2) {padding-right:20px}
