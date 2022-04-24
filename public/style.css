@@ -4,3 +4,4 @@ canvas {display: block;}
 .iconTxt p {display:inline-block;font-family: 'Square Peg', cursive;font-size: 30px;}
 .iconTxt .iconContainer {display:flex;justify-content:center;align-items:center;}
 .iconTxt p:nth-child(2) {padding-right:20px}
+.iconTxt img:last-child {width:50px;padding-left:20px}

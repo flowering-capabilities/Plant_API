@@ -183,6 +183,15 @@ let gaugeIndex = 0;
 let ground;
 let stars;
 
+
+
+
+//database variable count
+//need date so it doesnt count in the same day 
+let days;
+let day;
+let dayIndex;
+let loadData;
 function preload() {
   growth_1_01 = loadImage('growth1/sage_1_00.png');
   growth_1_02 = loadImage('growth1/sage_1_01.png');
@@ -338,6 +347,9 @@ function preload() {
   ground = loadImage('background/test.png');
   stars = loadImage('background/stars.png');
   
+  loadData = loadJSON("db.json");
+  //2 functions --> get existing json info
+  //overwirite existing data
 }  
 
 function setup() {
@@ -369,12 +381,18 @@ console.log(timeData + "hours");
 minuteTime = createDate.getMinutes();
 console.log(minuteTime);
 getTime(timeData);
-standardHours = calcHours(timeData);
-meridiem = ampm(timeData);
-displayTime(standardHours, minuteTime, meridiem );
+//standardHours = calcHours(timeData);
+//meridiem = ampm(timeData);
+//displayTime(standardHours, minuteTime, meridiem );
+
+//db vars
+days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+dayIndex = createDate.getDay();
+day = days[dayIndex];
+getDays(day);
 function draw() {
     clear();
-    
+    getJsonData(loadData);
    
     if(time == true){
         //day
@@ -389,10 +407,10 @@ function draw() {
     image(ground, 0, 350);
 
     if(tempBool == false){
-        //growth_1();
+        growth_1();
        // growth_2();
        //growth_3();
-        growth_1();
+       // growth_4();
         //droopy
        // growth_4_droop();
      
@@ -401,7 +419,7 @@ function draw() {
         //growth_2_droop();
         //growth_3_droop();
     }
-    image(waterGaugeArr[3], 50, 180);
+  //  image(waterGaugeArr[3], 50, 180);
    
 
     // waterGauge(); --> draws water gauge reliant on db fill count if over water in one  week water decrease by 1 until normal cannot be below 0
@@ -415,7 +433,7 @@ function draw() {
   //else if daycounter >5 && <= 7 -->  if water gauge is less than 3 or greater than three it will be wilty else healthy 
   //else() (>7) --> reset db daycounter starts at 1 water gauge starts at 0 
  
-  function ampm(hours){
+ /* function ampm(hours){
     switch (hours){
         case 0:
             meridiem  = "am";
@@ -492,8 +510,8 @@ function draw() {
         default:
             console.log("get standard meridiem  error");
     }
- }
-function calcHours(sthours){
+ }*/
+/*function calcHours(sthours){
     switch (sthours){
         case 0:
            sthours = 12;
@@ -570,6 +588,15 @@ function calcHours(sthours){
         default:
             console.log("get standard standard hours error");
     }
+ }*/
+ function getJsonData(data){
+          console.log(data.name);
+           data.name = "momo";
+         
+ }
+ function getDays(data){
+   
+   console.log("day " + data );
  }
 function displayTime(standardHours, minutes, meridiem ){
     if(minutes <= 9){
@@ -688,8 +715,8 @@ function displayTime(standardHours, minutes, meridiem ){
             document.getElementById('temp').textContent = currentTemp;
             let info = json.current.weather[0].description;
             let iconCode = json.current.weather[0].icon;
-            console.log(console.log(json.current.weather[0].icon));
-            displayIcon( iconCode);
+   //         console.log(console.log(json.current.weather[0].icon));
+            displayIcon(iconCode);
             displayDescription(info);
             displayLatLon(lat, lon);
             
@@ -707,7 +734,8 @@ function displayTime(standardHours, minutes, meridiem ){
   }
   function displayIcon(iconCode){
     // iconImg = loadImage(`http://openweathermap.org/img/w/${iconCode}.png`);
-     document.getElementById('icon').src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+     document.getElementById('icon').src =  `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+     image(image,100, 100);
   }
   function displayDescription(info){
     document.getElementById('description').textContent = info;
